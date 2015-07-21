@@ -1,0 +1,293 @@
+.WorkContent {
+  z-index:200;
+}
+.WorkContent .bg {
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  z-index:-10;
+}
+
+.WorkContent .link,
+.WorkContent .illustration,
+.WorkContent .description {
+  position:absolute;
+}
+
+.WorkContent h2 {
+  font-size: 14px;
+  margin: 10px 0 0 0;
+  background-color: rgba(255, 255, 255, .9);
+  color: rgba(0, 0, 0, .8);
+  text-align: center;
+  padding: 15px;
+  height: 20px;
+  font-weight: bold;
+}
+
+.WorkContent .link {
+  background:rgb(20, 20, 20);
+  height:20px;
+  top:-60px;
+  left:0;
+  padding:15px;
+  width:420px;
+  text-align:center;
+}
+
+.WorkContent .link a {
+  color:rgba(255, 255, 255, .8);
+}
+
+.WorkContent .illustration {
+  background:rgb(20, 20, 20);
+  top:-60px;
+  left:-230px;
+  width:200px;
+  height:320px;
+  padding:10px;
+}
+
+.WorkContent .image {
+  background:rgb(20, 20, 20);
+  padding:10px;
+  width:200px;
+  height:200px;
+}
+
+.WorkContent .description {
+  padding:10px;
+  width:200px;
+  height:200px;
+  top:0;
+  left:230px;
+  background:rgba(255, 255, 255, .98);
+  color:rgba(0, 0, 0, .8);
+  font-size:13px;
+  text-align:justify;
+}
+
+/* ------------------------------- FadeIn ------------------------------- */
+
+.WorkContent.fadeIn .bg {
+  -webkit-animation:WorkContentFadeInBG 2s cubic-bezier(0, .6, .4, 1) forwards;
+          animation:WorkContentFadeInBG 2s cubic-bezier(0, .6, .4, 1) forwards;
+}
+
+@-webkit-keyframes WorkContentFadeInBG {
+  from {
+    background:rgba(0, 0, 0, 0);
+  }
+  to {
+    background:rgba(0, 0, 0, .8);
+  }
+}
+
+@keyframes WorkContentFadeInBG {
+  from {
+    background:rgba(0, 0, 0, 0);
+  }
+  to {
+    background:rgba(0, 0, 0, .8);
+  }
+}
+
+.WorkContent.fadeIn .image {
+  -webkit-animation:WorkContentFadeInContent 1.5s cubic-bezier(0, .6, .4, 1) forwards;
+          animation:WorkContentFadeInContent 1.5s cubic-bezier(0, .6, .4, 1) forwards;
+}
+
+@-webkit-keyframes WorkContentFadeInContent {
+  from {
+    opacity:0;
+    margin-top:100px;
+  }
+  to {
+    margin-top:0;
+    opacity:1;
+  }
+}
+
+@keyframes WorkContentFadeInContent {
+  from {
+    opacity:0;
+    margin-top:100px;
+  }
+  to {
+    margin-top:0;
+    opacity:1;
+  }
+}
+
+.WorkContent.fadeIn h2 {
+  opacity:0;
+  margin-top:-50px;
+  -webkit-animation:WorkContentFadeInTitle .8s cubic-bezier(0, .6, .4, 1) forwards;
+          animation:WorkContentFadeInTitle .8s cubic-bezier(0, .6, .4, 1) forwards;
+  -webkit-animation-delay:0.5s;
+          animation-delay:0.5s;
+}
+
+@-webkit-keyframes WorkContentFadeInTitle {
+  from {
+    opacity:0;
+    margin-top:-30px;
+  }
+  to {
+    opacity:1;
+    margin-top:10px;
+  }
+}
+
+@keyframes WorkContentFadeInTitle {
+  from {
+    opacity:0;
+    margin-top:-30px;
+  }
+  to {
+    opacity:1;
+    margin-top:10px;
+  }
+}
+
+.WorkContent.fadeIn .link {
+  opacity:0;
+  -webkit-animation:WorkContentFadeInLink .8s cubic-bezier(0, .6, .4, 1) forwards;
+          animation:WorkContentFadeInLink .8s cubic-bezier(0, .6, .4, 1) forwards;
+  -webkit-animation-delay:0.6s;
+          animation-delay:0.6s;
+}
+
+@-webkit-keyframes WorkContentFadeInLink {
+  from {
+    top:-80px;
+    opacity:0;
+  }
+  to {
+    top:-60px;
+    opacity:1;
+  }
+}
+
+@keyframes WorkContentFadeInLink {
+  from {
+    top:-80px;
+    opacity:0;
+  }
+  to {
+    top:-60px;
+    opacity:1;
+  }
+}
+
+.WorkContent.fadeIn .illustration {
+  opacity:0;
+  -webkit-animation:WorkContentFadeInIllu .8s cubic-bezier(0, .6, .4, 1) forwards;
+          animation:WorkContentFadeInIllu .8s cubic-bezier(0, .6, .4, 1) forwards;
+  -webkit-animation-delay:0.7s;
+          animation-delay:0.7s;
+}
+
+@-webkit-keyframes WorkContentFadeInIllu {
+  from {
+    opacity:0;
+    left:-280px;
+  }
+  to {
+    opacity:1;
+    left:-230px;
+  }
+}
+
+@keyframes WorkContentFadeInIllu {
+  from {
+    opacity:0;
+    left:-280px;
+  }
+  to {
+    opacity:1;
+    left:-230px;
+  }
+}
+
+.WorkContent.fadeIn .description {
+  opacity:0;
+  -webkit-animation:WorkContentFadeInDesc .8s cubic-bezier(0, .6, .4, 1) forwards;
+          animation:WorkContentFadeInDesc .8s cubic-bezier(0, .6, .4, 1) forwards;
+  -webkit-animation-delay:0.8s;
+          animation-delay:0.8s;
+}
+
+@-webkit-keyframes WorkContentFadeInDesc {
+  from {
+    opacity:0;
+    left:280px;
+  }
+  to {
+    opacity:1;
+    left:230px;
+  }
+}
+
+@keyframes WorkContentFadeInDesc {
+  from {
+    opacity:0;
+    left:280px;
+  }
+  to {
+    opacity:1;
+    left:230px;
+  }
+}
+
+/* ------------------------------- loaded ------------------------------- */
+
+.WorkContent.loaded .bg {
+  background:rgba(0, 0, 0, .8);
+}
+
+/* ------------------------------- FadeOut ------------------------------- */
+
+.WorkContent.fadeOut .bg {
+  -webkit-animation:WorkContentFadeInBG 1s cubic-bezier(0, .6, .4, 1) forwards;
+          animation:WorkContentFadeInBG 1s cubic-bezier(0, .6, .4, 1) forwards;
+  -webkit-animation-direction:reverse;
+          animation-direction:reverse;
+}
+
+.WorkContent.fadeOut .image {
+  -webkit-animation:WorkContentFadeInContent .5s cubic-bezier(0, .6, .4, 1) forwards;
+          animation:WorkContentFadeInContent .5s cubic-bezier(0, .6, .4, 1) forwards;
+  -webkit-animation-direction:reverse;
+          animation-direction:reverse;
+}
+
+.WorkContent.fadeOut h2 {
+  -webkit-animation:WorkContentFadeInTitle .5s cubic-bezier(0, .6, .4, 1) forwards;
+          animation:WorkContentFadeInTitle .5s cubic-bezier(0, .6, .4, 1) forwards;
+  -webkit-animation-direction:reverse;
+          animation-direction:reverse;
+}
+
+.WorkContent.fadeOut .link {
+  -webkit-animation:WorkContentFadeInLink .5s cubic-bezier(0, .6, .4, 1) forwards;
+          animation:WorkContentFadeInLink .5s cubic-bezier(0, .6, .4, 1) forwards;
+  -webkit-animation-direction:reverse;
+          animation-direction:reverse;
+}
+
+.WorkContent.fadeOut .illustration {
+  -webkit-animation:WorkContentFadeInIllu .5s cubic-bezier(0, .6, .4, 1) forwards;
+          animation:WorkContentFadeInIllu .5s cubic-bezier(0, .6, .4, 1) forwards;
+  -webkit-animation-direction:reverse;
+          animation-direction:reverse;
+}
+
+.WorkContent.fadeOut .description {
+  -webkit-animation:WorkContentFadeInDesc .5s cubic-bezier(0, .6, .4, 1) forwards;
+          animation:WorkContentFadeInDesc .5s cubic-bezier(0, .6, .4, 1) forwards;
+  -webkit-animation-direction:reverse;
+          animation-direction:reverse;
+}

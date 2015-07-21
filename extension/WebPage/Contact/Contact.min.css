@@ -1,0 +1,10 @@
+.WebCom-WebPage-Contact .html {
+  width:400px;
+  background:rgba(0, 0, 0, .1);
+  border-radius:4px;
+  top:45%;
+  position:fixed;
+  left:50%;
+  margin-left:-200px;
+  z-index:1000;
+}

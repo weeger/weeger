@@ -1,0 +1,46 @@
+.D3RingRainbow {
+  /* Rainbow must be on front */
+  /* to handle mouse events. */
+  z-index:100;
+}
+
+.D3RingRainbow.fadeIn {
+  /*opacity:0;*/
+  animation:D3RingRainbowFadeIn 6s cubic-bezier(0, .6, .4, 1) forwards;
+}
+
+@keyframes D3RingRainbowFadeIn {
+  from {
+    /*opacity:0;*/
+  }
+  to {
+    /*opacity:1;*/
+  }
+}
+
+.D3RingRainbow .disabled div {
+  animation:D3RingRainbowDisabled 3s cubic-bezier(0, .6, .4, 1) forwards;
+}
+
+@keyframes D3RingRainbowDisabled {
+  from {
+    opacity:1;
+  }
+  to {
+    opacity:.1;
+  }
+}
+
+.D3RingRainbow .enabled div {
+  animation:D3RingRainbowEnabled 3s cubic-bezier(0, .6, .4, 1) forwards;
+}
+
+@keyframes D3RingRainbowEnabled {
+  from {
+    opacity:.1;
+  }
+  to {
+    opacity:1;
+  }
+}
+

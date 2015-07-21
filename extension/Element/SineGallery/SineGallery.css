@@ -1,0 +1,26 @@
+.SineGallery {
+  z-index:100;
+}
+
+/* ------------------------------- FadeIn ------------------------------- */
+
+.SineGallery.fadeIn a {
+  opacity:0;
+  animation:SineGalleryFadeInItem 2.5s cubic-bezier(0, .6, .4, 1) forwards;
+}
+
+@keyframes SineGalleryFadeInItem {
+  from {
+    opacity:0;
+  }
+  to {
+    opacity:1;
+  }
+}
+
+/* ------------------------------- FadeOut ------------------------------- */
+
+.SineGallery.fadeOut a {
+  animation:SineGalleryFadeInItem 2.5s cubic-bezier(0, .6, .4, 1) forwards;
+  animation-direction:reverse;
+}

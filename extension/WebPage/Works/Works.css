@@ -1,0 +1,46 @@
+.sineGalleryOne a {
+  border-radius:100%;
+  overflow:hidden;
+  background:#DDD;
+}
+
+.sineGalleryOne a img {
+  display:none;
+}
+
+.galleryWorks a {
+  border:1px solid #DDD;
+}
+
+.galleryWorks img {
+  border:10px solid #FFF;
+  box-sizing:border-box;
+  display:block;
+  width:100%;
+  height:100%;
+  box-shadow:-10px 10px 0 rgba(0, 0, 0, .1);
+}
+
+.galleryWorks .title-preview {
+  display:none;
+  background:#333;
+  color:rgba(255, 255, 255, .8);
+  text-align:center;
+  font-size:13px;
+}
+
+.galleryWorks a:hover .title-preview {
+  display:inherit;
+  animation:pageWorksItemHover .5s cubic-bezier(0, .6, .4, 1) forwards;
+}
+
+@keyframes pageWorksItemHover {
+  from {
+    height:0;
+    padding:0;
+  }
+  to {
+    height:15px;
+    padding:5px;
+  }
+}

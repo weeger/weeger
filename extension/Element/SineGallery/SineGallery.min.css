@@ -1,0 +1,38 @@
+.SineGallery {
+  z-index:100;
+}
+
+/* ------------------------------- FadeIn ------------------------------- */
+
+.SineGallery.fadeIn a {
+  opacity:0;
+  -webkit-animation:SineGalleryFadeInItem 2.5s cubic-bezier(0, .6, .4, 1) forwards;
+          animation:SineGalleryFadeInItem 2.5s cubic-bezier(0, .6, .4, 1) forwards;
+}
+
+@-webkit-keyframes SineGalleryFadeInItem {
+  from {
+    opacity:0;
+  }
+  to {
+    opacity:1;
+  }
+}
+
+@keyframes SineGalleryFadeInItem {
+  from {
+    opacity:0;
+  }
+  to {
+    opacity:1;
+  }
+}
+
+/* ------------------------------- FadeOut ------------------------------- */
+
+.SineGallery.fadeOut a {
+  -webkit-animation:SineGalleryFadeInItem 2.5s cubic-bezier(0, .6, .4, 1) forwards;
+          animation:SineGalleryFadeInItem 2.5s cubic-bezier(0, .6, .4, 1) forwards;
+  -webkit-animation-direction:reverse;
+          animation-direction:reverse;
+}

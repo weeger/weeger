@@ -1,0 +1,60 @@
+/* ------------------------------- global ------------------------------- */
+
+.HomeCircle .html .circle {
+  border-radius:100%;
+  border:1px solid rgba(0, 0, 0, .1);
+}
+
+/* ------------------------------- FadeIn ------------------------------- */
+
+.HomeCircle.fadeIn .html .circle {
+  animation:HomeCircleFadeIn 1s cubic-bezier(0, .6, .4, 1) forwards;
+  animation-delay:.5s;
+}
+
+@keyframes HomeCircleFadeIn {
+  0% {
+    border-width:0;
+    width:0;
+    height:0;
+  }
+  50% {
+    border-width:400px;
+    width:0;
+    height:0;
+    margin-left:-400px;
+    margin-top:-400px;
+  }
+  100% {
+    border-width:1px;
+    width:800px;
+    height:800px;
+    margin-left:-400px;
+    margin-top:-400px;
+  }
+}
+
+/* ------------------------------- loaded ------------------------------- */
+
+.HomeCircle.loaded .html .circle {
+  width:800px;
+  height:800px;
+  margin-left:-400px;
+  margin-top:-400px;
+}
+
+/* ------------------------------- FadeOut ------------------------------ */
+
+.HomeCircle.fadeOut .html .circle {
+  animation:HomeCircleFadeOut 1s cubic-bezier(0, .6, .4, 1) forwards;
+}
+
+@keyframes HomeCircleFadeOut {
+  0% {
+    opacity:1;
+  }
+  100% {
+    opacity:0;
+  }
+}
+

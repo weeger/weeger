@@ -1,0 +1,51 @@
+.WebCom-WebPage-Introduction .html {
+  position:fixed;
+  height:250px;
+  top:50%;
+  margin-top:-50px;
+  width:360px;
+  left:50%;
+  margin-left:-180px;
+  font-size:.8em;
+  text-align:justify;
+  color:rgba(0, 0, 0, .6);
+  z-index:1000;
+}
+
+.WebCom-WebPage-Introduction.fadeIn .html {
+  opacity:0;
+  -webkit-animation:PageIntroductionText 2s cubic-bezier(0, .6, .4, 1) forwards;
+          animation:PageIntroductionText 2s cubic-bezier(0, .6, .4, 1) forwards;
+  -webkit-animation-delay:2s;
+          animation-delay:2s;
+}
+
+@-webkit-keyframes PageIntroductionText {
+  0% {
+    margin-top:-40px;
+    opacity:0;
+  }
+  100% {
+    margin-top:-50px;
+    opacity:1;
+  }
+}
+
+@keyframes PageIntroductionText {
+  0% {
+    margin-top:-40px;
+    opacity:0;
+  }
+  100% {
+    margin-top:-50px;
+    opacity:1;
+  }
+}
+
+.WebCom-WebPage-Introduction.fadeOutChildren .html {
+  -webkit-animation:PageIntroductionText 1s cubic-bezier(0, .6, .4, 1) forwards;
+          animation:PageIntroductionText 1s cubic-bezier(0, .6, .4, 1) forwards;
+  -webkit-animation-direction:reverse;
+          animation-direction:reverse;
+}
+
