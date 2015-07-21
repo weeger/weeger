@@ -8,6 +8,7 @@
    */
   WjsProto.register('Formula', 'MousePositionFromCenter', {
     classExtends: 'FormulaPreset',
+    eventTrigger: true,
     preset: {
       // Subtract.
       formula: 'Math',

@@ -5,16 +5,15 @@
 }
 
 .D3RingRainbow.fadeIn {
-  /*opacity:0;*/
   animation:D3RingRainbowFadeIn 6s cubic-bezier(0, .6, .4, 1) forwards;
 }
 
 @keyframes D3RingRainbowFadeIn {
   from {
-    /*opacity:0;*/
+    opacity:0;
   }
   to {
-    /*opacity:1;*/
+    opacity:1;
   }
 }
 

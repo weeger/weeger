@@ -50,6 +50,7 @@
         /**
          * Executed when element construction is completed.
          * @require Formula > MousePositionFromCenter
+         * @require Formula > Accelerometer
          */
         initElement: function () {
           this.__super('initElement', arguments);
@@ -85,16 +86,43 @@
 
         callbacks: {
           stateSet: {
+            /**
+             * @require JsMethod > browserIsMobile
+             */
             active: function (value) {
               if (value) {
-                this.pluginTarget.targetX = {formula: 'MousePositionFromCenter', direction: 'X'};
-                this.pluginTarget.targetY = {formula: 'MousePositionFromCenter', direction: 'Y'};
+                if (this.wjs.browserIsMobile()) {
+                  this.pluginTarget.variableSet('targetY', {
+                    formula: 'Math',
+                    method: 'multiply',
+                    values: [
+                      {
+                        formula: 'Accelerometer',
+                        direction: 'gamma'
+                      },
+                      5
+                    ]});
+                  this.pluginTarget.variableSet('targetX', {
+                    formula: 'Math',
+                    method: 'multiply',
+                    values: [
+                      {
+                        formula: 'Accelerometer',
+                        direction: 'beta'
+                      },
+                      5
+                    ]});
+                }
+                else {
+                  this.pluginTarget.variableSet('targetX', {formula: 'MousePositionFromCenter', direction: 'X'});
+                  this.pluginTarget.variableSet('targetY', {formula: 'MousePositionFromCenter', direction: 'Y'});
+                }
                 this.dom.classList.add('enabled');
                 this.dom.classList.remove('disabled');
               }
               else {
-                this.pluginTarget.targetX = 0;
-                this.pluginTarget.targetY = 0;
+                this.pluginTarget.variableSet('targetX', 0);
+                this.pluginTarget.variableSet('targetY', 0);
                 this.dom.classList.add('disabled');
                 this.dom.classList.remove('enabled');
               }

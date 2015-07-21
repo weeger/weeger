@@ -13,7 +13,8 @@
       listeners: {},
       statesVars: {},
       stateConnected: {},
-      stateListener: {}
+      stateListener: {},
+      formulaVarListenersCounter: {}
     },
 
     states: {},
@@ -96,6 +97,81 @@
 
     domRect: function () {
       return this.dom.getBoundingClientRect();
+    },
+
+    /**
+     * Advanced variable setter, detect formulas.
+     */
+    variableSet: function (name, value) {
+      // Remove listener for old value.
+      if (this[name] !== undefined && this[name].formula) {
+        // Disable
+        this.formulaListenAll(value, false);
+      }
+      // Set new listener if formula.
+      if (value && value.formula) {
+        this.formulaListenAll(value);
+      }
+      // Use protected inheritance.
+      this.__super('variableSet', arguments);
+    },
+
+    /*variableGet:function() {
+      // TODO
+     },*/
+
+    formulaListenAll: function (formula, toggle) {
+      this.objectInspect(formula, this.formulaListen.bind(this), toggle);
+    },
+
+    formulaListen: function (item, name, toggle) {
+      // Item is a formula / sub formula.
+      if (item && item.formula) {
+        var formulaName = item.formula,
+          formula = this.wjs.formula.formulas[formulaName];
+        // Formula exists and is an event trigger.
+        if (formula && formula.eventTrigger && this.formulaChangeCallback) {
+          var counter = this.formulaVarListenersCounter;
+          // Remove
+          if (toggle === false && counter[formulaName] > 0) {
+            // Decrease.
+            counter[formulaName]--;
+            // All formulas removed.
+            if (counter[formulaName] === 0) {
+              this.wjs.window.removeEventListener(formula.eventNameUpdate, this.formulaChangeCallback);
+              delete counter[formulaName];
+            }
+          }
+          // Add
+          else {
+            // Listen only once for each formula type.
+            if (!counter[formulaName]) {
+              this.wjs.window.addEventListener(formula.eventNameUpdate, this.formulaChangeCallback);
+            }
+            // Count.
+            counter[formulaName] = counter[formulaName] || 0;
+            counter[formulaName]++;
+          }
+        }
+      }
+    },
+
+// TODO this.wjs FOR THIS METHOD
+    objectInspect: function (object, callback, args, level) {
+      level = level || 0;
+      for (var keys = Object.keys(object), i = 0, item, result; item = keys[i++];) {
+        result = callback(object[item], item, args, level);
+        // Recursive, if no "false" returned.
+        if (result !== false &&
+          // On non null objects.
+          typeof object[item] === 'object' && object[item]) {
+          this.objectInspect(object[item], callback, args, level + 1);
+        }
+        // Continue if no "null" returned.
+        if (result === null) {
+          return;
+        }
+      }
     },
 
     stateSet: function (name, value, vars) {

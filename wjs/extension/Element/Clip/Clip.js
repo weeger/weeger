@@ -27,8 +27,8 @@
       // Clip must have a parent to be repositioned.
       if (this.parent) {
         var relativeRect,
-        // TODO Calc once by rendered frame
-          rect = this.parent.dom.getBoundingClientRect(),
+        // Rect is computed on render.
+          rect = this.parent.domBoundingClientRect,
           output = {
             top: positionData.top + (rect.height - positionData.height) / 2,
             left: positionData.left + (rect.width - positionData.width) / 2,

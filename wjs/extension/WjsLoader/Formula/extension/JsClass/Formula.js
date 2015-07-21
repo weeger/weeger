@@ -13,13 +13,13 @@
       this.initFormula();
     },
 
-    __destruct:function() {
+    __destruct: function () {
       this.exitFormula();
     },
 
-    initFormula:WjsProto._e,
+    initFormula: WjsProto._e,
 
-    exitFormula:WjsProto._e,
+    exitFormula: WjsProto._e,
 
     updateEvent: function () {
       // Update a global event on change,

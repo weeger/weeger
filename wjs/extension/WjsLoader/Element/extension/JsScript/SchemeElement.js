@@ -20,8 +20,8 @@
       pluginSharedMethodCallback: null,
       frameNextEnabled: false,
       playFrameStamp: 0,
-      formulaVarListenersCounter: {},
-      animations: []
+      animations: [],
+      domBoundingClientRect: false
     },
 
     options: {
@@ -121,12 +121,13 @@
     },
 
     __construct: function (options) {
-      // Build callback for frame playing.
-      this.playFrameExecuteProxy = this.playFrameExecute.bind(this);
-      // Callback for listeners.
-      this.playFrameNextEnableProxy = this.frameNextEnable.bind(this);
       // Base.
       this.__super('__construct', arguments);
+      // Build callback for frame playing.
+      this.playFrameExecuteProxy = this.playFrameExecute.bind(this);
+      // Define frame enable as callback
+      // when a formula variable change.
+      this.formulaChangeCallback = this.frameNextEnable.bind(this);
       // Custom init.
       this.initElement(options);
       // Children should be created on construct complete.
@@ -138,70 +139,6 @@
     initElement: WjsProto._e,
 
     exitElement: WjsProto._e,
-
-    /**
-     * Advanced variable setter, detect formulas.
-     */
-    variableSet: function (name, value) {
-      // Remove listener for old value.
-      if (this[name] && this[name].formula) {
-        // Enable
-        // TODO Forget + Get
-//        this.wjs.window.removeEventListener(value.eventNameUpdate, this.playFrameNextEnableProxy);
-      }
-      // Set new listener if formula.
-      if (value && value.formula) {
-        if (this.wjs.formula.formulas[value.formula].preset) {
-          this.formulaPresetListen(this.wjs.formula.formulas[value.formula].preset);
-        }
-        else {
-          this.formulaListen(value);
-        }
-      }
-      // Use protected inheritance.
-      this.__super('variableSet', arguments);
-    },
-
-    formulaPresetListen: function (formula) {
-      this.objectInspect(formula, this.formulaListen.bind(this));
-    },
-
-    formulaListen: function (item) {
-      // Item is a formula / sub formula.
-      if (item && item.formula) {
-        var formulaName = item.formula,
-          formula = this.wjs.formula.formulas[formulaName];
-        // Formula exists and is an event trigger.
-        if (formula && formula.eventTrigger) {
-          var counter = this.formulaVarListenersCounter;
-          // Listen only once for each formula type.
-          if (!counter[formulaName]) {
-            this.wjs.window.addEventListener(formula.eventNameUpdate, this.playFrameNextEnableProxy);
-          }
-          // Count.
-          counter[formulaName] = counter[formulaName] || 0;
-          counter[formulaName]++;
-        }
-      }
-    },
-
-// TODO this.wjs FOR THIS METHOD
-    objectInspect: function (object, callback, level) {
-      level = level || 0;
-      for (var keys = Object.keys(object), i = 0, item, result; item = keys[i++];) {
-        result = callback(object[item], item, level);
-        // Recursive, if no "false" returned.
-        if (result !== false &&
-          // On non null objects.
-          typeof object[item] === 'object' && object[item]) {
-          this.objectInspect(object[item], callback, level + 1);
-        }
-        // Continue if no "null" returned.
-        if (result === null) {
-          return;
-        }
-      }
-    },
 
     exit: function (callback) {
       if (this.exitElement() !== false) {
@@ -437,6 +374,8 @@
         // from an external player. Render with no player defined
         // is still authorized. TODO check if still needed (ex: multiple async players)
         (!player || player === this.playPlayer || this.playerPropagate === true)) {
+        // Compute once by render process.
+        this.domBoundingClientRect = this.dom ? this.dom.getBoundingClientRect() : false;
         // Animation can update data
         this.renderAnimations();
         // Create render data object shared
