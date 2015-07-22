@@ -121,13 +121,13 @@
     },
 
     __construct: function (options) {
-      // Base.
-      this.__super('__construct', arguments);
       // Build callback for frame playing.
       this.playFrameExecuteProxy = this.playFrameExecute.bind(this);
       // Define frame enable as callback
       // when a formula variable change.
       this.formulaChangeCallback = this.frameNextEnable.bind(this);
+      // Base.
+      this.__super('__construct', arguments);
       // Custom init.
       this.initElement(options);
       // Children should be created on construct complete.

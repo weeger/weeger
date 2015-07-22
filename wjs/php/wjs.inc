@@ -459,8 +459,13 @@ class Wjs extends Router {
     // Iterate over types.
     foreach ($requestArray as $type => $items) {
       // Iterate over items.
-      foreach ($items as $name) {
-        $this->extensionPush($type, $name);
+      foreach ($items as $name => $options) {
+        if (!is_array($options)) {
+          $this->extensionPush($type, $options);
+        }
+        else {
+          $this->extensionPush($type, $name, $options);
+        }
       }
     }
   }

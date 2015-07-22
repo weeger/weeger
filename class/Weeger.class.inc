@@ -15,18 +15,24 @@ class Weeger extends Website {
     'Works',
     'Contact',
   );
-  var $extensionGlobal = array(
-    'JsClassStatic' => array(
-      // Allow keyboard navigation.
-      'webPageKeyboardChange'
-    )
-  );
+  // Create aliases for pages.
   var $pageAliases = array(
     '[root]'       => 'Home',
     'introduction' => 'Introduction',
     'contact'      => 'Contact',
     'works'        => 'Works',
   );
+  // Load extensions for all website.
+  var $extensionGlobal = array(
+    'JsClassStatic' => array(
+      // Allow keyboard navigation.
+      'webPageKeyboardChange'
+    ),
+    'WebCom'        => array(
+      'GithubRibbon'
+    )
+  );
+
   // Add global libraries.
   var $pageLibraries = array(
     'Favicon' => array(

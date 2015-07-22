@@ -14,7 +14,8 @@
         ]
       },
       requireStatic: {
-        Element: ['D3RingRainbow']
+        Element: ['D3RingRainbow'],
+        WebCom:['GithubRibbon']
       }
     },
 

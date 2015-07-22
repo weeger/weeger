@@ -104,7 +104,7 @@
      */
     variableSet: function (name, value) {
       // Remove listener for old value.
-      if (this[name] !== undefined && this[name].formula) {
+      if (value && value.formula) {
         // Disable
         this.formulaListenAll(value, false);
       }
@@ -129,7 +129,7 @@
       this.objectInspect(formula, this.formulaListen.bind(this), toggle);
     },
 
-    formulaListen: function (item, name, toggle) {
+    formulaListen: function (item, toggle) {
       // Item is a formula / sub formula.
       if (item && item.formula) {
         var formulaName = item.formula,
@@ -164,18 +164,18 @@
 // TODO this.wjs FOR THIS METHOD
     objectInspect: function (object, callback, args, level) {
       level = level || 0;
-      for (var keys = Object.keys(object), i = 0, item, result; item = keys[i++];) {
-        result = callback(object[item], item, args, level);
-        // Recursive, if no "false" returned.
-        if (result !== false &&
-          // On non null objects.
-          typeof object[item] === 'object' && object[item]) {
-          this.objectInspect(object[item], callback, args, level + 1);
+      if (typeof object === 'object') {
+        var result = callback(object, args, level);
+        // Recursive if not null.
+        if (result !== null) {
+          for (var keys = Object.keys(object), i = 0, key; key = keys[i++];) {
+            // Continue if no false;
+            if (this.objectInspect(object[key], callback, args, level + 1) === false) {
+              return;
+            }
+          }
         }
-        // Continue if no "null" returned.
-        if (result === null) {
-          return;
-        }
+        return result;
       }
     },
 

@@ -31,15 +31,14 @@ class WebForm extends WebCom {
       // Start session.
       $this->sessionInit();
       // Session ID must exist.
-//      if (isset($_SESSION[$_POST['formId']])) {
-
-      // Create instance.
-      $form = $this->instance($name, $_SESSION[$_POST['formId']]);
-      // Destroy, prevent multiple submissions.
-//      unset($_SESSION[$_POST['formId']]);
-      // Execute submit.
-      print $form->submitCall($_POST);
-//      }
+      if (isset($_SESSION[$_POST['formId']])) {
+        // Create instance.
+        $form = $this->instance($name, $_SESSION[$_POST['formId']]);
+        // Destroy, prevent multiple submissions.
+        unset($_SESSION[$_POST['formId']]);
+        // Execute submit.
+        print $form->submitCall($_POST);
+      }
       exit;
     }
   }

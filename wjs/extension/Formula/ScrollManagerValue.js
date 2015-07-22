@@ -1,5 +1,8 @@
 (function (WjsProto) {
   'use strict';
+  /**
+   * @require JsClassStatic > ScrollManager
+   */
   WjsProto.register('Formula', 'ScrollManagerValue', {
     eventTrigger: true,
 
