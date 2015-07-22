@@ -59,7 +59,7 @@
 
 .LinkCircle.fadeIn {
   opacity:0;
-  display:none;
+  visibility:hidden;
   -webkit-animation:LinkCircleFadeIn 2s cubic-bezier(0, .6, .4, 1) forwards;
           animation:LinkCircleFadeIn 2s cubic-bezier(0, .6, .4, 1) forwards;
   -webkit-animation-delay:1s;
@@ -68,12 +68,12 @@
 
 @-webkit-keyframes LinkCircleFadeIn {
   from {
-    display:block;
+    visibility:inherit;
     opacity:0;
     margin-top:100px;
   }
   to {
-    display:block;
+    visibility:inherit;
     opacity:1;
     margin-top:0;
   }
@@ -81,12 +81,12 @@
 
 @keyframes LinkCircleFadeIn {
   from {
-    display:block;
+    visibility:inherit;
     opacity:0;
     margin-top:100px;
   }
   to {
-    display:block;
+    visibility:inherit;
     opacity:1;
     margin-top:0;
   }
