@@ -14,6 +14,7 @@
       optionsDestroyed: {},
       optionsData: {},
       domChildren: {},
+      domIncludes: [],
       classLoadsNames: ['fadeIn', 'loaded', 'fadeOut', 'fadeOutChildren'],
       // Defines if javascript has to add
       // css classes in different status,
@@ -279,7 +280,7 @@
               com.__destructFadeOutOptionComplete();
             };
             // Search for <div data-wjsInclude="..."> tags.
-            this.wjs.wjsIncludeExit(com.dom, function () {
+            self.wjs.wjsIncludeExit(com.domIncludes, function () {
               self.wjs.webComExit(com.requiredInstances, function () {
                 // Launch fadeOut.
                 if (typeof com.classLoads.fadeOut === 'number') {
@@ -599,7 +600,7 @@
       // Define destination (no parent allowed for simple web com)
       options.domDestination = options.domDestination || this.dom;
       // Search for <div data-wjsInclude="..."> tags.
-      this.wjs.wjsIncludeInit(this.dom, options);
+      this.domIncludes = this.domIncludes.concat(this.wjs.wjsIncludeInit(this.dom, options));
     },
 
     /**
@@ -610,7 +611,7 @@
      */
     domClassLoadAdd: function (className, animationCallback) {
       // Class type must be declared, or detected into css sheet.
-      if (typeof this.classLoads.fadeOut === 'number') {
+      if (typeof this.classLoads[className] === 'number') {
         // Add a listener if complete callback specified.
         if (animationCallback) {
           this.wjs.cssAnimateCallback(this.dom, animationCallback, this.classLoads[className] * 1000);
@@ -687,6 +688,10 @@
      */
     variableSet: function (name, value) {
       this[name] = value;
+    },
+
+    variableGet: function (name) {
+      return this[name];
     },
 
     __variableGet: function (name) {

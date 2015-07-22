@@ -226,9 +226,7 @@ class Page {
       $output .= $html;
     }
     $output .= implode($this->librariesHook('renderBodyFooter'));
-    /* @var \Wjs\Loader\WebCom $loader */
-    $loader = $this->wjs->loaderGet($this->loader->type);
-    return $loader->htmlParse($this->extensionName, $output);
+    return $output;
   }
 
   function renderTemplate($path, $param = array()) {

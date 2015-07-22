@@ -26,9 +26,9 @@
       element.object3d.updateMatrix();
       element.object3d.updateMatrixWorld();
       var target = new (this.wjs.classProto('MathVector3'))(
-        this.wjs.formula.result(this.targetX),
-        this.wjs.formula.result(this.targetY),
-        this.wjs.formula.result(this.targetZ)
+        this.variableGet('targetX'),
+        this.variableGet('targetY'),
+        this.variableGet('targetZ')
       );
       element.object3d.lookAt(element.object3d.worldToLocal(target));
     }

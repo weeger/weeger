@@ -34,7 +34,10 @@
               (options.html === 'WJS_PUSH_WEBPAGE_PRELOADED' ? 'replace' : 'push'),
               // Root is not a path,
               // use full site path, to support pointing to root.
-              value !== '[root]' ? value : '');
+              value !== '[root]' ? value : '', undefined, {
+                type: com.loader.type,
+                name: com.type
+              });
           }
           else {
             // Default from webcom.

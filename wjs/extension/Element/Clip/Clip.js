@@ -6,21 +6,41 @@
   'use strict';
   WjsProto.register('Element', 'Clip', {
     classExtends: 'Element\\Sprite',
-    variables: {
-      top: 0,
-      left: 0
-    },
 
     options: {
       // By default, use offsetWidth
       width: NaN,
-      height: NaN
+      height: NaN,
+      top: {
+        defaults: NaN,
+        define: function (com, value, options) {
+          com.optionApply('dom', options);
+          if (isNaN(value)) {
+            if (com.dom && com.dom.style.top) {
+              return parseFloat(com.dom.style.top);
+            }
+            return 0;
+          }
+          return value;
+        }
+      },
+      left: {
+        defaults: NaN,
+        define: function (com, value, options) {
+          com.optionApply('dom', options);
+          if (isNaN(value)) {
+            if (com.dom && com.dom.style.left) {
+              return parseFloat(com.dom.style.left);
+            }
+            return 0;
+          }
+          return value;
+        }
+      }
     },
 
     optionsDefault: {
-      html: '',
-      top: 0,
-      left: 0
+      html: ''
     },
 
     positionAdjust: function (positionData, relativeToBinder) {
@@ -37,7 +57,7 @@
           };
         // Adjust according given element.
         if (relativeToBinder) {
-          relativeRect = relativeToBinder.dom.getBoundingClientRect();
+          relativeRect = relativeToBinder.getRect();
           output.top += relativeRect.top;
           output.left += relativeRect.left;
         }
@@ -48,15 +68,15 @@
 
     renderReset: function () {
       // Get local value or detect from dom.
-      var width = !isNaN(this.width) ? this.width : this.dom.offsetWidth,
-        height = !isNaN(this.height) ? this.height : this.dom.offsetHeight;
+      this.width = !isNaN(this.width) ? this.width : this.domBoundingClientRect.width;
+      this.height = !isNaN(this.height) ? this.height : this.domBoundingClientRect.height;
       // We not extend base who is an empty object.
       return {
-        top: this.result(this.top),
-        left: this.result(this.left),
+        top: this.variableGet('top'),
+        left: this.variableGet('left'),
         // Allow to inherit width / height from CSS.
-        width: width !== undefined ? this.result(width) : width,
-        height: height !== undefined ? this.result(height) : height
+        width: this.variableGet('width'),
+        height: this.variableGet('height')
       };
     },
 

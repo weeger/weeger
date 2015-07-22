@@ -38,5 +38,6 @@
     else if (complete) {
       complete();
     }
+    return includes;
   });
 }(WjsProto));

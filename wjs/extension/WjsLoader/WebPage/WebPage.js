@@ -29,16 +29,21 @@
       this.wjs.loaders.WebCom.__construct.call(this);
       // Use custom queue to manage page loads.
       this.queueName = this.type + 'PageLoads';
-      // TODO On back button
+      // Listen for back button.
       this.wjs.window.addEventListener('popstate', this.onPopState.bind(this));
     },
 
     /**
      * @require JsMethod > urlQueryParse
      */
-    onPopState: function () {
+    onPopState: function (e) {
       var query = this.wjs.urlQueryParse();
-      if (query[this.type]) {
+      // Search into saved alias.
+      if (e.state.type === this.type && e.state.name) {
+        this.pageHide(e.state.name);
+      }
+      // Search into query string.
+      else if (query[this.type]) {
         this.pageHide(query[this.type]);
       }
     },

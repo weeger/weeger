@@ -17,7 +17,7 @@
     Pi2: Math.PI * 2,
 
     renderReset: function () {
-      this.radiusRendered = this.result(this.radius);
+      this.radiusRendered = this.variableGet('radius');
       return this.__super('renderReset', arguments);
     },
 

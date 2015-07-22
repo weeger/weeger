@@ -90,9 +90,9 @@
       object3d.translateY(-this.translateY);
       object3d.translateZ(-this.translateZ);
       // Apply rotation.
-      object3d.rotateX(this.wjs.Math.degToRad(this.result(this.rotateH)));
-      object3d.rotateY(this.wjs.Math.degToRad(this.result(this.rotateP)));
-      object3d.rotateZ(this.wjs.Math.degToRad(this.result(this.rotateB)));
+      object3d.rotateX(this.wjs.Math.degToRad(this.variableGet('rotateH')));
+      object3d.rotateY(this.wjs.Math.degToRad(this.variableGet('rotateP')));
+      object3d.rotateZ(this.wjs.Math.degToRad(this.variableGet('rotateB')));
 
       return renderData;
     },

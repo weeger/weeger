@@ -116,9 +116,14 @@
       this.__super('variableSet', arguments);
     },
 
-    /*variableGet:function() {
-      // TODO
-     },*/
+    variableGet: function (name) {
+      var value = this.__super('variableGet', arguments);
+      if (value !== undefined && value.formula) {
+        return this.wjs.formula.result(value, this);
+      }
+      // Use protected inheritance.
+      return value;
+    },
 
     formulaListenAll: function (formula, toggle) {
       this.objectInspect(formula, this.formulaListen.bind(this), toggle);

@@ -86,9 +86,8 @@
       if (this[this.phases[this.phase]]()) {
         // Ask for nex phase.
         this.phase++;
-        // We start all new phases asynchronously,
-        // it breaks the stack and prevent overflows.
-        this.wjs.async(this.reboot);
+        // Reboot.
+        this.boot();
       }
     },
 
@@ -150,9 +149,10 @@
         }
       })) {
         this.request = requestFiltered;
+        // Returning true continue boot process.
         return true;
       }
-      // return nothing will stop boot process.
+      // Returning nothing will stop boot process.
     },
 
     bootGetLoaders: function () {

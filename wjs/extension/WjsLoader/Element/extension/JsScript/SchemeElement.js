@@ -580,10 +580,6 @@
     frame: function () {
       this.play();
       this.stop();
-    },
-
-    result: function (formula) {
-      return this.wjs.formula.result(formula, this);
     }
   });
 }(WjsProto));
