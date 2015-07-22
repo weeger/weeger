@@ -22,7 +22,7 @@
       // Start animation.
       this.wjs.wexampleRainbow.D3Ring.animate({
         rotateH: 90,
-        rotateP: 1 // TODO 0 do not work
+        rotateP: 0
       }, {
         duration: 3000,
         easing: [0.7, 0, 0, 1]

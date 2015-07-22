@@ -29,7 +29,7 @@
         itemIndex = this.itemIndex,
         gap = sineGallery.snapSize + sineGallery.snapMargin,
         scrollTo = (sineGallery.startMargin * 2) - (sineGallery.sineWidth - gap),
-        scrollPosition = sineGallery.result(sineGallery.scrollPositionX);
+        scrollPosition = sineGallery.variableGet('scrollPositionX');
       if (sineGallery.direction < 0) {
         scrollPosition = 1 - scrollPosition;
       }

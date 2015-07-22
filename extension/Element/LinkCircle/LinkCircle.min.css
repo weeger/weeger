@@ -1,0 +1,94 @@
+.LinkCircle {
+  display:block;
+  width:60px;
+  height:60px;
+  background:rgba(0, 0, 0, .2);
+  border-radius:100%;
+}
+
+.LinkCircle .wave {
+  display:block;
+  position:absolute;
+  top:0;
+  left:0;
+  box-sizing:border-box;
+  border:2px solid rgba(0, 0, 0, .2);
+  border-radius:100%;
+  opacity:0;
+}
+
+.LinkCircle:hover .wave {
+  -webkit-animation:LinkCircleHover 2s cubic-bezier(0, .6, .4, 1) forwards;
+          animation:LinkCircleHover 2s cubic-bezier(0, .6, .4, 1) forwards;
+}
+
+@-webkit-keyframes LinkCircleHover {
+  from {
+    width:60px;
+    height:60px;
+    opacity:1;
+  }
+  to {
+    width:200px;
+    height:200px;
+    top:-70px;
+    left:-70px;
+    opacity:0;
+  }
+}
+
+@keyframes LinkCircleHover {
+  from {
+    width:60px;
+    height:60px;
+    opacity:1;
+  }
+  to {
+    width:200px;
+    height:200px;
+    top:-70px;
+    left:-70px;
+    opacity:0;
+  }
+}
+
+.LinkCircle.fadeIn {
+  opacity:0;
+  -webkit-animation:LinkCircleFadeIn 2s cubic-bezier(0, .6, .4, 1) forwards;
+          animation:LinkCircleFadeIn 2s cubic-bezier(0, .6, .4, 1) forwards;
+  -webkit-animation-delay:1s;
+          animation-delay:1s;
+}
+
+@-webkit-keyframes LinkCircleFadeIn {
+  from {
+    opacity:0;
+    margin-top:100px;
+  }
+  to {
+    opacity:1;
+    margin-top:0;
+  }
+}
+
+@keyframes LinkCircleFadeIn {
+  from {
+    opacity:0;
+    margin-top:100px;
+  }
+  to {
+    opacity:1;
+    margin-top:0;
+  }
+}
+
+.LinkCircle.fadeOut {
+  -webkit-animation:LinkCircleFadeIn .5s cubic-bezier(0, .7, .3, 1) forwards;
+          animation:LinkCircleFadeIn .5s cubic-bezier(0, .7, .3, 1) forwards;
+  -webkit-animation-delay:0;
+          animation-delay:0;
+  -webkit-animation-direction:reverse;
+          animation-direction:reverse;
+}
+
+
