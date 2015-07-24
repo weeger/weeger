@@ -15,7 +15,7 @@
       optionsData: {},
       domChildren: {},
       domIncludes: [],
-      classLoadsNames: ['fadeIn', 'loaded', 'fadeOut', 'fadeOutChildren'],
+      classLoadsNames: ['fadeIn', 'loaded', 'fadeOut', 'fadeOutChildren', 'mouseOver', 'mouseOut'],
       // Defines if javascript has to add
       // css classes in different status,
       // created

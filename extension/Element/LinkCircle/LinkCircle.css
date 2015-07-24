@@ -4,6 +4,7 @@
   height:60px;
   background:rgba(0, 0, 0, .2);
   border-radius:100%;
+  box-shadow:inset 0 0 12px rgba(255, 255, 255, 1);
 }
 
 .LinkCircle .wave {
@@ -18,27 +19,54 @@
   z-index:-10;
 }
 
-.LinkCircle:hover {
+.LinkCircle.mouseOver {
   background:rgba(0, 0, 0, .8);
+  box-shadow:0 0 2px rgb(0, 0, 0), 0 0 7px rgba(0, 0, 0, 1), 0 0 23px rgba(0, 0, 0, .5), 0 0 59px rgba(0, 0, 0, .5);
 }
 
-.LinkCircle:hover .wave {
+.LinkCircle.mouseOver .wave {
   animation:LinkCircleHover 2s cubic-bezier(0, .6, .4, 1) forwards;
 }
 
 @keyframes LinkCircleHover {
-  from {
+  0% {
     width:60px;
     height:60px;
+    top:0;
+    left:0;
     opacity:1;
   }
-  to {
+  100% {
     width:200px;
     height:200px;
     top:-70px;
     left:-70px;
     opacity:0;
   }
+}
+
+@keyframes LinkCircleMouseOut {
+  0% {
+    width:200px;
+    height:200px;
+    top:-70px;
+    left:-70px;
+    opacity:0;
+  }
+  90% {
+    opacity:1;
+  }
+  100% {
+    width:60px;
+    height:60px;
+    top:0;
+    left:0;
+    opacity:0;
+  }
+}
+
+.LinkCircle.mouseOut .wave {
+  animation:LinkCircleMouseOut .4s cubic-bezier(0, .6, .4, 1) forwards;
 }
 
 .LinkCircle.fadeIn {
@@ -53,11 +81,13 @@
     visibility:inherit;
     opacity:0;
     margin-top:100px;
+    margin-left:30px;
   }
   to {
     visibility:inherit;
     opacity:1;
     margin-top:0;
+    margin-left:0;
   }
 }
 

@@ -45,6 +45,12 @@
               }
             }
           }
+          if (!isNaN(com.classLoads.mouseOver)) {
+            com.domListen(com.dom, 'mouseover', 'cssMouseOver');
+          }
+          if (!isNaN(com.classLoads.mouseOut)) {
+            com.domListen(com.dom, 'mouseout', 'cssMouseOut');
+          }
           // Call base function which search into regular CSS links.
           return this.__super('define', [com, value, options]);
         }
@@ -53,12 +59,11 @@
 
     __construct: function (options) {
       // Bind callbacks for dom.
-      var scheme = this.loader.webCompSchemes[this.protoClassName];
-      if (scheme.callbacks && scheme.callbacks.domListen) {
-        for (var i = 0, key, keys = Object.keys(scheme.callbacks.domListen); key = keys[i++];) {
-          key = this.methodName('callbacks.domListen.' + key);
-          // Bind.
-          this[key] = this[key].bind(this);
+      if (this.callbacksNames.length) {
+        for (var i = 0, key; key = this.callbacksNames[i++];) {
+          if (key.indexOf('__callbacks__domListen__') === 0) {
+            this[key] = this[key].bind(this);
+          }
         }
       }
       // Base method.
@@ -390,6 +395,32 @@
               this.stateSet(localStates[key], value);
             }
           }
+        }
+      },
+      domListen: {
+        cssMouseOver: function () {
+          // Add class.
+          this.domClassLoadAdd('mouseOver');
+          // Listen to remove class.
+          this.domListen(this.dom, 'mouseout', 'cssMouseOverOut');
+        },
+        cssMouseOverOut: function () {
+          // Remove class
+          this.dom.classList.remove('mouseOver');
+          // Forget listener.
+          this.domForget(this.dom, 'mouseout', 'cssMouseOverOut');
+        },
+        cssMouseOut: function () {
+          // Add class.
+          this.domClassLoadAdd('mouseOut');
+          // Listen to remove class.
+          this.domListen(this.dom, 'mouseover', 'cssMouseOutOver');
+        },
+        cssMouseOutOver: function () {
+          // Remove class
+          this.dom.classList.remove('mouseOut');
+          // Forget listener.
+          this.domForget(this.dom, 'mouseover', 'cssMouseOutOver');
         }
       }
     }

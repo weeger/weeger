@@ -15,14 +15,17 @@
       snapSize: 50,
       snapMargin: 20,
       children: [
+        // Custom type.
         {
-          // Custom type.
           type: 'Element::D3Container',
           parentShortcut: 'D3Container'
         }
       ],
       startMargin: 300,
-      scrollPositionX: {formula: 'ScrollManagerValue', direction: 'XPercent'},
+      scrollPositionX: {
+        formula: 'ScrollManagerValue',
+        direction: 'XPercent'
+      },
       links: {},
       sineYFreq: 1,
       sineYAmp: 0,
@@ -47,6 +50,7 @@
           click: this.itemClick
         });
       }
+      this.domListen(this.wjs.window, 'mousewheel', 'mouseWheel');
     },
 
     exitElement: function () {
@@ -56,6 +60,14 @@
     renderReset: function () {
       this.sineWidth = (this.snapSize + this.snapMargin) * this.D3Container.children.length;
       return this.__super('renderReset', arguments);
+    },
+
+    callbacks: {
+      domListen: {
+        mouseWheel: function (e) {
+          this.wjs.window.scrollTo(this.wjs.ScrollManager.scrollX - e.deltaY, this.wjs.ScrollManager.scrollY);
+        }
+      }
     }
   });
 }(WjsProto));

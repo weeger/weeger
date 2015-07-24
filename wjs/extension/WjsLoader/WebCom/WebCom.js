@@ -17,7 +17,6 @@
     __construct: function () {
       this.wjs.extendObject(this, {
         webCompCounter: 0,
-        webCompSchemes: {},
         wjsShortcuts: false,
         instances: {},
         instancesCount: {},
@@ -121,8 +120,6 @@
         options: {},
         optionsDefault: {}
       }, scheme, true);
-      // Scheme
-      this.webCompSchemes[protoName] = scheme;
       // Create com proto
       this.wjs.classExtend(protoName, proto);
       // Build prototype;
@@ -206,19 +203,21 @@
      * @require JsMethod > isPlainObject
      */
     methodsFlatten: function (proto, part, name, depth, level, prefix) {
-      var separator = '__', keys = Object.keys(part[name]), group, i = 0;
+      var separator = '__', keys = Object.keys(part[name]), group, i = 0, output = [];
       prefix = prefix || separator + name;
       depth = depth || 1;
       level = level || 0;
       while (group = keys[i++]) {
         var propertyName = prefix + separator + group;
         if (level + 1 < depth && this.wjs.isPlainObject(part[name][group])) {
-          this.methodsFlatten(proto, part[name], group, depth, level + 1, propertyName);
+          output = output.concat(this.methodsFlatten(proto, part[name], group, depth, level + 1, propertyName));
         }
         else {
           proto[propertyName] = part[name][group];
+          output.push(propertyName);
         }
       }
+      return output;
     },
 
     inheritObject: function (proto, scheme, item) {
@@ -330,7 +329,7 @@
     },
 
     protoParseCallbacks: function (proto, scheme) {
-      this.methodsFlatten(proto, scheme, 'callbacks', 2);
+      proto.callbacksNames = this.methodsFlatten(proto, scheme, 'callbacks', 2);
     },
 
     /**
