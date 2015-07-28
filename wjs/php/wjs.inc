@@ -853,7 +853,9 @@ class Wjs extends Router {
     $wrapped = '<div>' . $html . '</div>';
     $domSave = NULL;
     // Load depending of PHP version.
-    if (version_compare(PHP_VERSION, '5.4.0') >= 0) {
+    // Do not work wit PHP 5.4.38 && libxml 2.7.8
+    // But works with PHP 5.5.9 && libxml 2.9.1
+    if (version_compare(PHP_VERSION, '5.5.0') >= 0) {
       $dom->loadHTML($wrapped, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
     }
     // Version under PHP 5.4 do not support second argument in loadHTML,
