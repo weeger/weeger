@@ -32,7 +32,7 @@
 }
 
 @keyframes HomeMenuLinkHover {
-  to {
+  100% {
     margin:5px 55px;
   }
 }
@@ -46,11 +46,11 @@
 }
 
 @keyframes homeTitleFadeInH1 {
-  from {
+  0% {
     margin-right:30px;
     opacity:0;
   }
-  to {
+  100% {
     margin-right:0;
     opacity:.8;
   }
@@ -63,11 +63,11 @@
 }
 
 @keyframes homeTitleFadeInH2 {
-  from {
+  0% {
     margin-left:30px;
     opacity:0;
   }
-  to {
+  100% {
     margin-left:0;
     opacity:.8;
   }
@@ -76,14 +76,15 @@
 .HomeMenu.fadeIn ul li a {
   opacity:0;
   animation:homeTitleFadeInUlLiA 2s cubic-bezier(0, .6, .4, 1) forwards;
+  animation-delay:1.5s;
 }
 
 @keyframes homeTitleFadeInUlLiA {
-  from {
+  0% {
     opacity:0;
     margin:5px 20px;
   }
-  to {
+  100% {
     opacity:1;
     margin:5px 85px;
   }
@@ -96,11 +97,11 @@
 }
 
 @keyframes homeTitleFadeOutH1 {
-  from {
+  0% {
     margin-right:0;
     opacity:.8;
   }
-  to {
+  100% {
     margin-right:30px;
     opacity:0;
   }
@@ -111,11 +112,11 @@
 }
 
 @keyframes homeTitleFadeOutH2 {
-  from {
+  0% {
     margin-left:0;
     opacity:.8;
   }
-  to {
+  100% {
     margin-left:30px;
     opacity:0;
   }
@@ -127,11 +128,11 @@
 }
 
 @keyframes homeTitleFadeOutUlLiA {
-  from {
+  0% {
     opacity:1;
     margin:5px 85px;
   }
-  to {
+  100% {
     opacity:0;
     margin:5px 20px;
   }

@@ -66,25 +66,27 @@
 }
 
 .LinkCircle.mouseOut .wave {
-  animation:LinkCircleMouseOut .4s cubic-bezier(0, .6, .4, 1) forwards;
+  /* Try full names for safari animation issues */
+  animation-name:LinkCircleMouseOut;
+  animation-duration:.4s;
+  animation-iteration-count:1;
+  animation-timing-function:cubic-bezier(0, .6, .4, 1);
+  animation-fill-mode:forwards;
 }
 
 .LinkCircle.fadeIn {
   opacity:0;
-  visibility:hidden;
   animation:LinkCircleFadeIn 2s cubic-bezier(0, .6, .4, 1) forwards;
   animation-delay:1s;
 }
 
 @keyframes LinkCircleFadeIn {
-  from {
-    visibility:inherit;
+  0% {
     opacity:0;
     margin-top:100px;
     margin-left:30px;
   }
-  to {
-    visibility:inherit;
+  100% {
     opacity:1;
     margin-top:0;
     margin-left:0;

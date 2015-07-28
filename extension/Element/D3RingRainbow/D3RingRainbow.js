@@ -12,8 +12,6 @@
     classExtends: 'Element\\Clip',
     // Set options, can be overridden on creation.
     optionsDefault: {
-      // Define number of bars.
-      barsLength: 24,
       children: [
         // Create 3D ring container.
         {
@@ -27,6 +25,7 @@
     },
 
     options: {
+      // Define number of bars.
       barsLength: 24
     },
 

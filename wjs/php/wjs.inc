@@ -865,6 +865,9 @@ class Wjs extends Router {
       // Search for our div through html / body tags.
       $dom->replaceChild($dom->firstChild->firstChild->firstChild, $dom->firstChild);
     }
+    // Hide dom while not activated by javascript,
+    // see html option of WebCom for more info.
+    $dom->firstChild->setAttribute('style','display:none;' . $dom->firstChild->getAttribute('style'));
     // Replace images src.
     $images = $dom->getElementsByTagName('img');
     /** @var \DOMElement $image */
