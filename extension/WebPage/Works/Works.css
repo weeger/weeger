@@ -8,6 +8,58 @@
   display:none;
 }
 
+/* --- tech --- */
+
+.galleryTech img {
+  border:10px solid #FFF;
+  border-radius:100%;
+  box-sizing:border-box;
+  display:block;
+  width:100%;
+  height:100%;
+  opacity:.5;
+}
+
+.galleryTech .title-preview {
+  display:none;
+  background:white;
+  border:1px solid #CCC;
+  color:rgba(255, 255, 255, .8);
+  text-align:center;
+  font-size:13px;
+  height:15px;
+  padding:5px;
+  margin:0 auto;
+  white-space:nowrap;
+}
+
+.galleryTech a:hover img {
+  opacity:1;
+  box-shadow:0 0 10px rgba(0, 0, 0, .1);
+}
+
+.galleryTech a:hover .title-preview {
+  box-shadow:-10px 10px 0 rgba(0, 0, 0, .1);
+  display:inherit;
+  z-index:100;
+  animation:galleryTechItemHover .5s cubic-bezier(0, .6, .4, 1) forwards;
+}
+
+@keyframes galleryTechItemHover {
+  from {
+    color:white;
+    margin-left:50px;
+    width:0;
+  }
+  to {
+    color:#444;
+    margin-left:0;
+    width:100px;
+  }
+}
+
+/* --- works --- */
+
 .galleryWorks a {
   border:1px solid #DDD;
 }

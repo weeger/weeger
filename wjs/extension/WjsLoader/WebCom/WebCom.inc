@@ -126,4 +126,23 @@ class WebCom extends Loader {
     }
     return FALSE;
   }
+
+//  function wjsInclude($extensionName, $requireType, $requireName, $html) {
+////    echo $extensionName . ' require ' . $requireType . ' > ' . $requireName . ' into ' . $html;
+////    echo '
+////
+////    content is ' . $this->wjs->loaderGet($requireType)->extensionsPushed[$requireName]['#data']['html'];
+//
+//    $this->wjs->loaderGet($requireType)->extensionsPushed[$requireName]['#data']['html'] = 'coucou';
+//
+//    $domInclude = $this->wjs->htmlLoad($this->extensionsPushed[$extensionName]['#data']['html']);
+//    $domInclude->innerHTML = $this->wjs->loaderGet($requireType)->extensionsPushed[$requireName]['#data']['html'];
+//
+//    $this->extensionsPushed[$extensionName]['#data']['html'] = $this->wjs->htmlSave($domInclude);
+////    $this->extensionsPushed[$type]['#data']['html'] = FALSE;
+//    //$dom->innerHTML
+////    echo $this->wjs->htmlSave($dom);
+////    print_r($this->extensionsPushed[$type]);
+////    exit;
+//  }
 }

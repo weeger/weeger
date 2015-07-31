@@ -1,0 +1,46 @@
+[
+  {
+    "title": "Drupal",
+    "image": "tech-drup.png"
+  },
+  {
+    "title": "PHP",
+    "description": "...",
+    "image": "tech-php.png"
+  },
+  {
+    "title": "Javascript",
+    "description": "...",
+    "image": "tech-js.png"
+  },
+  {
+    "title": "CSS",
+    "description": "...",
+    "image": "tech-css.png"
+  },
+  {
+    "title": "HTML",
+    "description": "...",
+    "image": "tech-html.png"
+  },
+  {
+    "title": "Music",
+    "description": "...",
+    "image": "tech-music.png"
+  },
+  {
+    "title": "Graphics",
+    "description": "...",
+    "image": "tech-gfx.png"
+  },
+  {
+    "title": "Sociology",
+    "description": "...",
+    "image": "tech-soc.png"
+  },
+  {
+    "title": "Philosophy",
+    "description": "...",
+    "image": "tech-phi.png"
+  }
+]

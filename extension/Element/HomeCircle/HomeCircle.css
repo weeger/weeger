@@ -1,5 +1,9 @@
 /* ------------------------------- global ------------------------------- */
 
+.HomeCircle {
+  z-index:-10;
+}
+
 .HomeCircle .html .circle {
   border-radius:100%;
   border:1px solid rgba(0, 0, 0, .1);
@@ -37,6 +41,7 @@
 /* ------------------------------- loaded ------------------------------- */
 
 .HomeCircle.loaded .html .circle {
+  background:#FFF;
   width:800px;
   height:800px;
   margin-left:-400px;

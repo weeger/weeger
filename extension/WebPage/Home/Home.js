@@ -7,12 +7,7 @@
    */
   WjsProto.register('WebPage', 'Home', {
     optionsDefault: {
-      require: {
-        Element: [
-          'HomeCircle',
-          'HomeMenu'
-        ]
-      },
+
       requireStatic: {
         Element: ['D3RingRainbow'],
         WebCom:['GithubRibbon']

@@ -38,6 +38,8 @@
 
     initElement: function () {
       this.wjs.ScrollManager.scrollEnable('X', 2);
+      this.wjs.ScrollManager.mouseWheelEnable('X');
+      this.wjs.ScrollManager.mouseDriftEnable('X', 200, this.method('callbacks.domListen.mouseDrift'));
       // Create items.
       for (var i = 0, item; item = this.links[i++];) {
         this.D3Container.childAdd({
@@ -55,6 +57,8 @@
 
     exitElement: function () {
       this.wjs.ScrollManager.scrollDisable('X');
+      this.wjs.ScrollManager.mouseWheelDisable('X');
+      this.wjs.ScrollManager.mouseDriftDisable(this.method('callbacks.domListen.mouseDrift'));
     },
 
     renderReset: function () {
@@ -64,8 +68,8 @@
 
     callbacks: {
       domListen: {
-        mouseWheel: function (e) {
-          this.wjs.window.scrollTo(this.wjs.ScrollManager.scrollX - e.deltaY, this.wjs.ScrollManager.scrollY);
+        mouseDrift: function (position) {
+          this.wjs.window.scrollTo(this.wjs.ScrollManager.scrollX + (position > (this.wjs.window.innerWidth / 2) ? 3 : -3), this.wjs.ScrollManager.scrollY);
         }
       }
     }

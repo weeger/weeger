@@ -21,19 +21,8 @@
 .WebCom-WebPage-Home.fadeIn .background-carousel-l,
 .WebCom-WebPage-Home.fadeIn .background-carousel-r {
   height:0;
-  -webkit-animation:HomeBgCarouselFadeIn 1s cubic-bezier(0, .6, .4, 1) forwards;
-          animation:HomeBgCarouselFadeIn 1s cubic-bezier(0, .6, .4, 1) forwards;
-  -webkit-animation-delay:2s;
-          animation-delay:2s;
-}
-
-@-webkit-keyframes HomeBgCarouselFadeIn {
-  0% {
-    height:0;
-  }
-  100% {
-    height:100%;
-  }
+  animation:HomeBgCarouselFadeIn 1s cubic-bezier(0, .6, .4, 1) forwards;
+  animation-delay:2s;
 }
 
 @keyframes HomeBgCarouselFadeIn {

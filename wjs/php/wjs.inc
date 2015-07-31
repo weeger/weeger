@@ -844,7 +844,12 @@ class Wjs extends Router {
     }
   }
 
-  function htmlRebase($html, $basePath) {
+  /**
+   * @param $html string
+   *
+   * @return \DOMElement
+   */
+  function htmlLoad($html) {
     // Parse with native PHP dom parser.
     $dom = new \DOMDocument;
     // Remove errors like parsing non encoded question marks in urls.
@@ -867,9 +872,26 @@ class Wjs extends Router {
       // Search for our div through html / body tags.
       $dom->replaceChild($dom->firstChild->firstChild->firstChild, $dom->firstChild);
     }
+    return $dom;
+  }
+
+  /**
+   * @param $dom \DOMDocument
+   *
+   * @return string
+   */
+  function htmlSave($dom) {
+    // Convert to text.
+    $html = $dom->saveHTML();
+    // Remove the temporary wrapper.
+    return trim(preg_replace('!^<div>([\s\S]*?)</div>$!i', '$1', $html));
+  }
+
+  function htmlRebase($html, $basePath) {
+    $dom = $this->htmlLoad($html);
     // Hide dom while not activated by javascript,
     // see html option of WebCom for more info.
-    $dom->firstChild->setAttribute('style','display:none;' . $dom->firstChild->getAttribute('style'));
+    $dom->firstChild->setAttribute('style', 'display:none;' . $dom->firstChild->getAttribute('style'));
     // Replace images src.
     $images = $dom->getElementsByTagName('img');
     /** @var \DOMElement $image */
@@ -881,11 +903,7 @@ class Wjs extends Router {
         $image->setAttribute('src', $basePath . $image->getAttribute('src'));
       }
     }
-    // Convert to text.
-    $html = $dom->saveHTML();
-    // Remove the temporary wrapper.
-    $html = trim(preg_replace('!^<div>([\s\S]*?)</div>$!i', '$1', $html));
     // Return rebased.
-    return $html;
+    return $this->htmlSave($dom);
   }
 }

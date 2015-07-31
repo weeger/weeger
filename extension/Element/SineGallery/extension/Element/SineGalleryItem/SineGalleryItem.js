@@ -12,11 +12,15 @@
       this.sineGallery = this.parent.parent;
       this.itemIndex = itemIndex;
       this.domClickBind = this.domClick.bind(this);
-      this.dom.addEventListener('click', this.domClickBind);
+      if (this.click) {
+        this.dom.addEventListener('click', this.domClickBind);
+      }
     },
 
     exitElement: function () {
-      this.dom.removeEventListener('click', this.domClickBind);
+      if (this.click) {
+        this.dom.removeEventListener('click', this.domClickBind);
+      }
     },
 
     domClick: function (e) {

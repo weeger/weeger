@@ -196,14 +196,17 @@
             // Requires dom option.
             com.optionApply('dom', options);
             // Fill a new child.
-            var dom = com.domChildAdd('html', 'div', value);
-            // Check new child.
-            if (dom.firstChild && dom.firstChild.style) {
-              // If a content exists it may be hidden until
-              // it is not activated here, see htmlRebase() function
-              // from wjs.inc for more info.
-              dom.firstChild.style.display = null;
-            }
+            value = com.domChildAdd('html', 'div', value);
+          }
+          else if (typeof value === 'object') {
+            value = com.domChildAdd('html', value);
+          }
+          // Check new child.
+          if (value.firstChild && value.firstChild.style) {
+            // If a content exists it may be hidden until
+            // it is not activated here, see htmlRebase() function
+            // from wjs.inc for more info.
+            value.firstChild.style.display = null;
           }
         }
       },

@@ -132,14 +132,15 @@
         define: function (com, value, options) {
           // Requires html && dom option.
           com.optionApply('dom', options);
-          if (value !== 'WJS_PUSH_WEBPAGE_PRELOADED') {
-            this.__super('define', [com, value, options]);
+          // Preloaded page are already in place.
+          if (value === 'WJS_PUSH_WEBPAGE_PRELOADED') {
+            // Find dom object.
+            value = com.dom.getElementsByClassName('html')[0];
+            // Save preloaded value to manage destroy.
+            com.options.html.valuePreloaded = value.innerHTML;
           }
-          else {
-            var dom = com.dom.getElementsByClassName('html')[0];
-            com.options.html.valuePreloaded = dom.innerHTML;
-            com.domChildAdd('html', dom);
-          }
+          // Treat as a webcom.
+          this.__super('define', [com, value, options]);
         },
         destroy: function (com, value) {
           if (com.html !== 'WJS_PUSH_WEBPAGE_PRELOADED') {
